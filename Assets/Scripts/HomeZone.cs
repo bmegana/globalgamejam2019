@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class HomeZone : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class HomeZone : MonoBehaviour
         if (homeIsHit && Input.anyKeyDown)
         {
             roundOverText.text = "";
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }
