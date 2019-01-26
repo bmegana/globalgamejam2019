@@ -315,6 +315,8 @@ namespace Pathfinding.Util {
 			var cam = Camera.current;
 			var planes = GeometryUtility.CalculateFrustumPlanes(cam);
 
+            surfaceMaterial = null;
+            lineMaterial = null;
 			// Silently do nothing if the materials are not set
 			if (surfaceMaterial == null || lineMaterial == null) return;
 
