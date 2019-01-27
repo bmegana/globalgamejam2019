@@ -1,15 +1,20 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class ItemManager : MonoBehaviour
 {
     public static ItemManager instance;
-    public ArrayList decorationsList; //TODO: integrate with looting script
+    public GameObject[] decorationsList; //TODO: integrate with looting script
+    public int decListSize = 15;
 
     public GameObject decorationsPanel;
     public GameObject decorations;
-    public int maxNumDecorations;
+
+    public GameObject decorationOptionsPanel;
+
+    private int decorationIndexToEdit;
+
+    public GameObject dummyLootPanel;
 
     private void Awake()
     {
@@ -17,8 +22,6 @@ public class ItemManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-
-            decorationsList = new ArrayList();
         }
         else
         {
@@ -28,25 +31,70 @@ public class ItemManager : MonoBehaviour
 
     public void Start()
     {
-        maxNumDecorations = decorations.transform.childCount;
+        decorationsList = new GameObject[decListSize];
     }
 
-    public void DisplayDecorateMenu()
+    public void DeactivateAllPanels()
+    {
+        decorationsPanel.SetActive(false);
+        decorationOptionsPanel.SetActive(false);
+        dummyLootPanel.SetActive(false);
+    }
+
+    public void ActivateDecoratePanel()
     {
         decorationsPanel.SetActive(true);
     }
 
-    public void DropDecoration()
+    public void DeactivateDecoratePanel()
     {
-        
+        decorationsPanel.SetActive(false);
     }
 
-    public void UpdateDecorationList(ArrayList chosenLootList)
+    public void ActivateDecorationOptionsPanel()
     {
-        foreach (GameObject loot in chosenLootList)
+        decorationOptionsPanel.SetActive(true);
+    }
+
+    public void DeactivateDecorationOptionsPanel()
+    {
+        decorationOptionsPanel.SetActive(false);
+    }
+
+    public void ActivateDummyLootPanel()
+    {
+        dummyLootPanel.SetActive(true);
+    }
+
+    public void DeactivateDummyLootPanel()
+    {
+        dummyLootPanel.SetActive(false);
+    }
+
+    public void SetDecorationIndexToEdit(int index)
+    {
+        decorationIndexToEdit = index;
+    }
+
+    public void UpdateDecoration(GameObject loot)
+    {
+        DontDestroyOnLoad(loot);
+        decorationsList[decorationIndexToEdit] = loot;
+        DeactivateDecorationOptionsPanel();
+        DeactivateDummyLootPanel();
+
+        GameObject decorSlot =
+            decorations.transform.GetChild(decorationIndexToEdit).gameObject;
+        DecorationSlotBehavior dsb =
+            decorSlot.GetComponent<DecorationSlotBehavior>();
+        dsb.UpdateSlot(loot.GetComponent<SpriteRenderer>().sprite);
+    }
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
         {
-            DontDestroyOnLoad(loot);
-            decorationsList.Add(loot);
+            ActivateDecoratePanel();
         }
     }
 }
