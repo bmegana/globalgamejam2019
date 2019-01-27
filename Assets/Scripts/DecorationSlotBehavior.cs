@@ -10,7 +10,7 @@ public class DecorationSlotBehavior : MonoBehaviour
 
     public void SetDecorationIndexToEdit(int index)
     {
-        ItemManager.instance.SetDecorationIndexToEdit(index);
+        DecorationManager.instance.SetDecorationIndexToEdit(index);
     }
 
     public void UpdateSlot(Sprite lootSprite)
@@ -33,5 +33,10 @@ public class DecorationSlotBehavior : MonoBehaviour
             itemImageComponent.sprite =
                 item.GetComponent<SpriteRenderer>().sprite;
         }
+    }
+
+    public Sprite getSprite()
+    {
+        return itemImageComponent.sprite;
     }
 }

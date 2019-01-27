@@ -15,21 +15,17 @@ public class EnemySpawn : MonoBehaviour
     public bool spawnWhenBelowMaximum;
     public int maxNumEnemiesOnScreen;
 
-    public int[] enemyGroupCounts;
-    public float[] spawnTimes;
-    public enum Direction { North, South, East, West, Random };
-    public Direction[] nextDirectionsToSpawn;
-
     public GameObject enemySmallRat;
     public GameObject enemyBigRat;
     public GameObject enemyHando;
     public GameObject enemySlick;
     public GameObject enemyFred;
 
-    public enum Enemy { SmallRat, BigRat, Hando, Slick, Fred };
-    public Enemy[] nextEnemiesToSpawn;
+    public RoundData[] rounds;
+    private double roundTime = 0.0;
+    private bool roundIsActive = true;
 
-    private int currentIntervalIndex = 0;
+    private int currentRoundIndex = 0;
     private int currentNumEnemiesOnScreen;
     private int totalNumEnemies;
 
@@ -78,26 +74,31 @@ public class EnemySpawn : MonoBehaviour
         }
     }
 
-    private void SpawnEnemy(Vector2 dir)
+    private void SpawnEnemy(RoundData data, Vector2 dir)
     {
-        Enemy enemyType = nextEnemiesToSpawn[currentIntervalIndex];
+        RoundData.Enemy enemyType = data.nextEnemiesToSpawn[data.intervalIndex];
         GameObject enemy = null;
         switch (enemyType)
         {
-            case Enemy.SmallRat:
+            case RoundData.Enemy.SmallRat:
                 enemy = Instantiate(enemySmallRat, dir, new Quaternion());
+                Debug.Log("Spawning Small Rat.");
                 break;
-            case Enemy.BigRat:
+            case RoundData.Enemy.BigRat:
                 enemy = Instantiate(enemyBigRat, dir, new Quaternion());
+                Debug.Log("Spawning Big Rat.");
                 break;
-            case Enemy.Hando:
+            case RoundData.Enemy.Hando:
                 enemy = Instantiate(enemyHando, dir, new Quaternion());
+                Debug.Log("Spawning Hando.");
                 break;
-            case Enemy.Slick:
+            case RoundData.Enemy.Slick:
                 enemy = Instantiate(enemySlick, dir, new Quaternion());
+                Debug.Log("Spawning Slick.");
                 break;
-            case Enemy.Fred:
+            case RoundData.Enemy.Fred:
                 enemy = Instantiate(enemyFred, dir, new Quaternion());
+                Debug.Log("Spawning Fred.");
                 break;
         }
         AIDestinationSetter destSetter =
@@ -105,35 +106,28 @@ public class EnemySpawn : MonoBehaviour
         destSetter.target = target;
     }
 
-    private void Start()
+    private void SpawnGroup(RoundData data, int intervalIndex)
     {
-        for (int i = 0; i < enemyGroupCounts.Length; i++)
-        {
-            totalNumEnemies += enemyGroupCounts[i];
-        }
-    }
-
-    private void SpawnGroup(Direction dir)
-    {
-        int numEnemiesToSpawn = enemyGroupCounts[currentIntervalIndex];
+        int numEnemiesToSpawn = data.enemyGroupCounts[intervalIndex];
+        RoundData.Direction dir = data.nextSpawnDirections[intervalIndex];
         for (int i = 0; i < numEnemiesToSpawn; i++)
         {
             switch (dir)
             {
-                case Direction.North:
-                    SpawnEnemy(NorthDir());
+                case RoundData.Direction.North:
+                    SpawnEnemy(data, NorthDir());
                     break;
-                case Direction.South:
-                    SpawnEnemy(SouthDir());
+                case RoundData.Direction.South:
+                    SpawnEnemy(data, SouthDir());
                     break;
-                case Direction.East:
-                    SpawnEnemy(EastDir());
+                case RoundData.Direction.East:
+                    SpawnEnemy(data, EastDir());
                     break;
-                case Direction.West:
-                    SpawnEnemy(WestDir());
+                case RoundData.Direction.West:
+                    SpawnEnemy(data,WestDir());
                     break;
-                case Direction.Random:
-                    SpawnEnemy(RandDir());
+                case RoundData.Direction.Random:
+                    SpawnEnemy(data, RandDir());
                     break;
                 default:
                     Debug.Log("Error: Unknown Direction");
@@ -153,22 +147,28 @@ public class EnemySpawn : MonoBehaviour
 
     private void Update()
     {
-        if (0 < spawnTimes.Length &&
-            currentIntervalIndex < spawnTimes.Length)
+        if (0 < rounds.Length && currentRoundIndex < rounds.Length &&
+            roundIsActive)
         {
-            if (Time.timeSinceLevelLoad > spawnTimes[currentIntervalIndex] ||
-                EnemyNumberConditionMet())
+            RoundData data = rounds[currentRoundIndex];
+            totalNumEnemies += rounds[currentRoundIndex].enemyGroupCounts.Length;
+
+            if (data.intervalIndex < data.numIntervals)
             {
-                if (0 < nextDirectionsToSpawn.Length &&
-                    currentIntervalIndex < nextDirectionsToSpawn.Length)
+                roundTime += Time.deltaTime;
+                if (roundTime > data.spawnTimes[data.intervalIndex] ||
+                    EnemyNumberConditionMet())
                 {
-                    SpawnGroup(nextDirectionsToSpawn[currentIntervalIndex]);
+                    SpawnGroup(data, data.intervalIndex);
+                    data.intervalIndex++;
                 }
-                else
-                {
-                    Debug.Log("Error: Interval index out of bounds.");
-                }
-                currentIntervalIndex++;
+            }
+            else if (totalNumEnemies == 0)
+            {
+                rounds[currentRoundIndex].intervalIndex = 0;
+                currentRoundIndex++;
+                roundIsActive = false;
+                roundTime = 0;
             }
         }
     }
