@@ -25,7 +25,9 @@ public class EnemySpawn : MonoBehaviour
     private double roundTime = 0.0;
     private bool roundIsActive = true;
 
-    private int currentRoundIndex = 0;
+    public bool isSpawning = true;
+
+    private int currentIntervalIndex = 0;
     private int currentNumEnemiesOnScreen;
     private int totalNumEnemies;
 

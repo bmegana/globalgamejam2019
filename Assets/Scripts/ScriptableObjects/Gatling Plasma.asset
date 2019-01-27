@@ -9,9 +9,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 892ff8f8378e34be3b9d9319de003fce, type: 3}
-  m_Name: Plasma
+  m_Name: Gatling Plasma
   m_EditorClassIdentifier: 
-  color: {r: 0.08027079, g: 0, b: 0.99821246, a: 1}
-  gunName: Plasma
-  fireRate: 1.5
-  lineWidth: 1
+  color: {r: 0.9504803, g: 0, b: 0.9901702, a: 1}
+  gunName: Gatling Plasma
+  fireRate: 0.01
+  lineWidth: 0.05
