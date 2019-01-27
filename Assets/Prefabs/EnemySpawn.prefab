@@ -51,12 +51,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8659154fd4032d340be6ae5f354f0377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 1789678590345904, guid: e0bf35f981f09e94480761ea992879ad,
-    type: 2}
   target: {fileID: 0}
-  maxNumSpawnOnScreen: 10
-  totalNumSpawnThisRound: 0
   xSpawnFromOrigin: 10
   maxYOffset: 6
   ySpawnFromOrigin: 6
   maxXOffset: 10
+  spawnWhenUnderMinimum: 0
+  minNumEnemiesOnScreen: 0
+  spawnWhenBelowMaximum: 0
+  maxNumEnemiesOnScreen: 0
+  enemyGroupCounts: 
+  spawnTimes: []
+  nextDirectionsToSpawn: 
+  enemySmallRat: {fileID: 1185359493185644, guid: f4840c4f466048d41bfb96dddc9beda3,
+    type: 2}
+  enemyBigRat: {fileID: 1039502286137998, guid: d5e496997fb1e0143ad0236a286e9bc0,
+    type: 2}
+  enemyHando: {fileID: 1773062068588332, guid: 3334f41a8cf2cf04eb92e1b0c2f293b2, type: 2}
+  enemySlick: {fileID: 1584271428209428, guid: 927a64096a9005b499773eb0416dd8d2, type: 2}
+  enemyFred: {fileID: 1835792946526338, guid: 2bb009633b215e94b905e634c5471ae9, type: 2}
+  nextEnemiesToSpawn: 
+  currentNumEnemiesOnScreen: 0
+  totalNumEnemies: 0

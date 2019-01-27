@@ -3,7 +3,6 @@ using Pathfinding;
 
 public class EnemySpawn : MonoBehaviour
 {
-    public GameObject enemyPrefab;
     public Transform target;
 
     public float xSpawnFromOrigin;
@@ -21,9 +20,18 @@ public class EnemySpawn : MonoBehaviour
     public enum Direction { North, South, East, West, Random };
     public Direction[] nextDirectionsToSpawn;
 
+    public GameObject enemySmallRat;
+    public GameObject enemyBigRat;
+    public GameObject enemyHando;
+    public GameObject enemySlick;
+    public GameObject enemyFred;
+
+    public enum Enemy { SmallRat, BigRat, Hando, Slick, Fred };
+    public Enemy[] nextEnemiesToSpawn;
+
     private int currentIntervalIndex = 0;
-    public int currentNumEnemiesOnScreen;
-    public int totalNumEnemies;
+    private int currentNumEnemiesOnScreen;
+    private int totalNumEnemies;
 
     private Vector2 NorthDir()
     {
@@ -70,8 +78,28 @@ public class EnemySpawn : MonoBehaviour
         }
     }
 
-    private void SetEnemyVariables(GameObject enemy)
+    private void SpawnEnemy(Vector2 dir)
     {
+        Enemy enemyType = nextEnemiesToSpawn[currentIntervalIndex];
+        GameObject enemy = null;
+        switch (enemyType)
+        {
+            case Enemy.SmallRat:
+                enemy = Instantiate(enemySmallRat, dir, new Quaternion());
+                break;
+            case Enemy.BigRat:
+                enemy = Instantiate(enemyBigRat, dir, new Quaternion());
+                break;
+            case Enemy.Hando:
+                enemy = Instantiate(enemyHando, dir, new Quaternion());
+                break;
+            case Enemy.Slick:
+                enemy = Instantiate(enemySlick, dir, new Quaternion());
+                break;
+            case Enemy.Fred:
+                enemy = Instantiate(enemyFred, dir, new Quaternion());
+                break;
+        }
         AIDestinationSetter destSetter =
             enemy.GetComponent<AIDestinationSetter>();
         destSetter.target = target;
@@ -85,39 +113,33 @@ public class EnemySpawn : MonoBehaviour
         }
     }
 
-    private void SpawnGroup(Vector2 dir)
+    private void SpawnGroup(Direction dir)
     {
         int numEnemiesToSpawn = enemyGroupCounts[currentIntervalIndex];
         for (int i = 0; i < numEnemiesToSpawn; i++)
         {
-            GameObject enemy = Instantiate(enemyPrefab, dir, new Quaternion());
-            SetEnemyVariables(enemy);
+            switch (dir)
+            {
+                case Direction.North:
+                    SpawnEnemy(NorthDir());
+                    break;
+                case Direction.South:
+                    SpawnEnemy(SouthDir());
+                    break;
+                case Direction.East:
+                    SpawnEnemy(EastDir());
+                    break;
+                case Direction.West:
+                    SpawnEnemy(WestDir());
+                    break;
+                case Direction.Random:
+                    SpawnEnemy(RandDir());
+                    break;
+                default:
+                    Debug.Log("Error: Unknown Direction");
+                    break;
+            }
             currentNumEnemiesOnScreen++;
-        }
-    }
-
-    private void SpawnGroupAtDirection(Direction dir)
-    {
-        switch (dir)
-        {
-            case Direction.North:
-                SpawnGroup(NorthDir());
-                break;
-            case Direction.South:
-                SpawnGroup(SouthDir());
-                break;
-            case Direction.East:
-                SpawnGroup(EastDir());
-                break;
-            case Direction.West:
-                SpawnGroup(WestDir());
-                break;
-            case Direction.Random:
-                SpawnGroup(RandDir());
-                break;
-            default:
-                Debug.Log("Error: Unknown Direction");
-                break;
         }
     }
 
@@ -140,16 +162,11 @@ public class EnemySpawn : MonoBehaviour
                 if (0 < nextDirectionsToSpawn.Length &&
                     currentIntervalIndex < nextDirectionsToSpawn.Length)
                 {
-                    SpawnGroupAtDirection(nextDirectionsToSpawn[currentIntervalIndex]);
+                    SpawnGroup(nextDirectionsToSpawn[currentIntervalIndex]);
                 }
                 else
                 {
-                    GameObject enemy = Instantiate(
-                        enemyPrefab,
-                        RandDir(),
-                        new Quaternion()
-                    );
-                    SetEnemyVariables(enemy);
+                    Debug.Log("Error: Interval index out of bounds.");
                 }
                 currentIntervalIndex++;
             }

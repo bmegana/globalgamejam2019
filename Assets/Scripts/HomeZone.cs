@@ -14,7 +14,7 @@ public class HomeZone : MonoBehaviour
         if (collision.gameObject.CompareTag(ENEMY_TAG))
         {
             homeIsHit = true;
-            roundOverText.text = "Round Over";
+            //roundOverText.text = "Round Over";
         }
     }
 
@@ -22,7 +22,7 @@ public class HomeZone : MonoBehaviour
     {
         if (homeIsHit && Input.anyKeyDown)
         {
-            roundOverText.text = "";
+            //roundOverText.text = "";
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
