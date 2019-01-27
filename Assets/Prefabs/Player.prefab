@@ -23,9 +23,9 @@ GameObject:
   - component: {fileID: 50164701400246942}
   - component: {fileID: 61307021836409214}
   - component: {fileID: 120588103207376744}
-  - component: {fileID: 114719973779063826}
-  - component: {fileID: 114989583320397894}
-  - component: {fileID: 114388119001435948}
+  - component: {fileID: 114775428831123662}
+  - component: {fileID: 114339316298220540}
+  - component: {fileID: 114021702411693568}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -91,7 +91,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &114388119001435948
+--- !u!114 &114021702411693568
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -102,19 +102,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7938bf75068047f3a83fb6e69d469ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114719973779063826
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1651830144351992}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d784c4753fc85b4e97144cbafb1354e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
---- !u!114 &114989583320397894
+  inventory: []
+--- !u!114 &114339316298220540
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -130,6 +119,23 @@ MonoBehaviour:
     m_Bits: 256
   gunColor: {r: 1, g: 0, b: 0, a: 0}
   rotationSpeed: 0.2
+  guns:
+  - {fileID: 11400000, guid: 82e0e0cd536f5474fb000d344faba8df, type: 2}
+  - {fileID: 11400000, guid: 21f21b8c2d0c74780afec11d2739d31a, type: 2}
+  - {fileID: 11400000, guid: 6034458c5cba6474d8977e863704414d, type: 2}
+  - {fileID: 11400000, guid: 1dc7234ce62764ff589150c54156812f, type: 2}
+--- !u!114 &114775428831123662
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1651830144351992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d784c4753fc85b4e97144cbafb1354e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
 --- !u!120 &120588103207376744
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -144,7 +150,7 @@ LineRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: 0b9168485c7d95d4ebffa52e9695d782, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -184,8 +190,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.9666241, g: 0, b: 0.9517761, a: 1}
-      key1: {r: 0.9666241, g: 0, b: 0.9517761, a: 1}
+      key0: {r: 0.9800532, g: 0.94919276, b: 0.9200431, a: 1}
+      key1: {r: 0.9800532, g: 0.94919276, b: 0.9200431, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
