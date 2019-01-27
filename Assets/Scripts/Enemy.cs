@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System;
+﻿using UnityEngine;
 using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour {
@@ -18,8 +15,7 @@ public class Enemy : MonoBehaviour {
 			Loot lootScript = loot.GetComponent<Loot> (); 
 			lootScript.StartCoroutine (lootScript.DestroyLoot());
         }  
-		Destroy(gameObject);
+        EnemySpawn.instance.numEnemiesDead++;
+        Destroy(gameObject);
     }
-
-
 }
