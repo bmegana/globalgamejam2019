@@ -14,3 +14,4 @@ MonoBehaviour:
   color: {r: 1, g: 0.9910402, b: 0.17266363, a: 1}
   gunName: Rifle
   fireRate: 0.5
+  lineWidth: 0.2

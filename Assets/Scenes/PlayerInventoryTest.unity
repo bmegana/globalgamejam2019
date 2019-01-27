@@ -113,6 +113,48 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &8627427
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 8627429}
+  - component: {fileID: 8627428}
+  m_Layer: 0
+  m_Name: GameController
+  m_TagString: GameController
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &8627428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 8627427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffc76c08f7a4048da99591571367ce99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numRounds: 10
+  enemySpawn: {fileID: 382820385}
+--- !u!4 &8627429
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 8627427}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &253096102
 Prefab:
   m_ObjectHideFlags: 0
@@ -123,7 +165,7 @@ Prefab:
     - target: {fileID: 114989583320397894, guid: 6c191d96ec538684aa2498bf8bbf2b0b,
         type: 2}
       propertyPath: guns.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4530269640136646, guid: 6c191d96ec538684aa2498bf8bbf2b0b, type: 2}
       propertyPath: m_LocalPosition.x
@@ -155,7 +197,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4530269640136646, guid: 6c191d96ec538684aa2498bf8bbf2b0b, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 120588103207376744, guid: 6c191d96ec538684aa2498bf8bbf2b0b,
         type: 2}
@@ -205,6 +247,16 @@ Prefab:
       value: 
       objectReference: {fileID: 11400000, guid: 6034458c5cba6474d8977e863704414d,
         type: 2}
+    - target: {fileID: 114989583320397894, guid: 6c191d96ec538684aa2498bf8bbf2b0b,
+        type: 2}
+      propertyPath: guns.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1dc7234ce62764ff589150c54156812f,
+        type: 2}
+    - target: {fileID: 1651830144351992, guid: 6c191d96ec538684aa2498bf8bbf2b0b, type: 2}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6c191d96ec538684aa2498bf8bbf2b0b, type: 2}
   m_IsPrefabParent: 0
@@ -289,6 +341,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &382820385 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114100080396900828, guid: cf9a3e04bb69a91468faace6aaaec4e2,
+    type: 2}
+  m_PrefabInternal: {fileID: 1081401550}
+  m_Script: {fileID: 11500000, guid: 8659154fd4032d340be6ae5f354f0377, type: 3}
 --- !u!1 &645330558
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,7 +391,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &773559079 stripped
 GameObject:
@@ -397,7 +455,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4874599587765458, guid: cf9a3e04bb69a91468faace6aaaec4e2, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114100080396900828, guid: cf9a3e04bb69a91468faace6aaaec4e2,
         type: 2}
@@ -548,7 +606,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4396294438594842, guid: 7fcde49abf6320544b87f1066089703a, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4396294438594842, guid: 7fcde49abf6320544b87f1066089703a, type: 2}
       propertyPath: m_LocalScale.x
@@ -608,7 +666,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4167403919213220, guid: eba23513c00366648a45c8e7f1addb67, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114237183762849006, guid: eba23513c00366648a45c8e7f1addb67,
         type: 2}
@@ -690,7 +748,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4280761757822660, guid: 32c5e3a21c7a3194f9e6bf2afd50c396, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114412627807317088, guid: 32c5e3a21c7a3194f9e6bf2afd50c396,
         type: 2}

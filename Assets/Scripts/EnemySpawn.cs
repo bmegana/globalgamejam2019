@@ -29,6 +29,8 @@ public class EnemySpawn : MonoBehaviour
     public enum Enemy { SmallRat, BigRat, Hando, Slick, Fred };
     public Enemy[] nextEnemiesToSpawn;
 
+    public bool isSpawning = true;
+
     private int currentIntervalIndex = 0;
     private int currentNumEnemiesOnScreen;
     private int totalNumEnemies;

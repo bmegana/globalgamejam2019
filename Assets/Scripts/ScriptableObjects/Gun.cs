@@ -8,4 +8,5 @@ public class Gun : ScriptableObject {
     public Color color;
     public string gunName;
     public float fireRate;
+    public float lineWidth;
 }

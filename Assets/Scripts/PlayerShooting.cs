@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Threading;
@@ -29,22 +29,23 @@ public class PlayerShooting : MonoBehaviour {
 
         gunLine.startColor = gun.color;
         gunLine.endColor = gun.color;
+        gunLine.startWidth = gun.lineWidth;
+        gunLine.endWidth = gun.lineWidth;
 
         Rotate();
 
         // Shooting
         if (Input.GetButton("Fire1") && Time.time - lastFiredTime >= gun.fireRate) {
             gunLine.SetPosition(0, transform.position);
-            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, 100, shootableLayer);
+            RaycastHit2D hit = Physics2D.CircleCast(ray.origin, gun.lineWidth, ray.direction, 100, shootableLayer);
             if (hit.collider != null && hit.transform.CompareTag("Enemy")) {
-                Debug.Log("Hitting Enemy.");
-                print(string.Format("hit {0}", hit.transform.name));
                 gunLine.enabled = true;
                 gunLine.SetPosition(1, hit.point);
                 hit.transform.GetComponent<Enemy>().Death();
             }
             else {
                 // mock gunLine hit environment in distance
+                gunLine.enabled = true;
                 gunLine.SetPosition(1, ray.GetPoint(100));
             }
 
