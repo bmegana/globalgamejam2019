@@ -25,7 +25,8 @@ GameObject:
   - component: {fileID: 114117301356489820}
   - component: {fileID: 114234052135984438}
   - component: {fileID: 114164610326550150}
-  m_Layer: 0
+  - component: {fileID: 114101068694843306}
+  m_Layer: 8
   m_Name: Slick
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -90,6 +91,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.79, y: 8.345064}
   m_EdgeRadius: 0
+--- !u!114 &114101068694843306
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1584271428209428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25fc590e23028c841b9788e26588c5b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drops: []
 --- !u!114 &114117301356489820
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour {
 
+    // Default shootable layer is set to 'Nothing'; be sure to set it
     [SerializeField] LayerMask shootableLayer;
     [SerializeField] Color gunColor;
     [SerializeField] float rotationSpeed = 0.2f;
@@ -30,6 +31,7 @@ public class PlayerShooting : MonoBehaviour {
             gunLine.SetPosition(0, transform.position);
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, 100, shootableLayer);
             if (hit.collider != null && hit.transform.CompareTag("Enemy")) {
+                Debug.Log("Hitting Enemy.");
                 print(string.Format("hit {0}", hit.transform.name));
                 gunLine.enabled = true;
                 gunLine.SetPosition(1, hit.point);

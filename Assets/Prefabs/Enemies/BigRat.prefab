@@ -25,7 +25,8 @@ GameObject:
   - component: {fileID: 114971806896667152}
   - component: {fileID: 114090763510047784}
   - component: {fileID: 114793602422277370}
-  m_Layer: 0
+  - component: {fileID: 114979059519081632}
+  m_Layer: 8
   m_Name: BigRat
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -155,6 +156,18 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
+--- !u!114 &114979059519081632
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1039502286137998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25fc590e23028c841b9788e26588c5b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drops: []
 --- !u!212 &212088934502735976
 SpriteRenderer:
   m_ObjectHideFlags: 1

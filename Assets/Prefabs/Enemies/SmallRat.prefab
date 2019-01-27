@@ -25,7 +25,8 @@ GameObject:
   - component: {fileID: 114505866383047018}
   - component: {fileID: 114303391765674276}
   - component: {fileID: 114296176477918494}
-  m_Layer: 0
+  - component: {fileID: 114862284287726950}
+  m_Layer: 8
   m_Name: SmallRat
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -155,6 +156,19 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
+--- !u!114 &114862284287726950
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1185359493185644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25fc590e23028c841b9788e26588c5b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drops:
+  - {fileID: 1651830144351992, guid: 2335e92867e389f4db78708fc4ebacae, type: 2}
 --- !u!212 &212936855663710268
 SpriteRenderer:
   m_ObjectHideFlags: 1

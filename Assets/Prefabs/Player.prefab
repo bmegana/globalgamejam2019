@@ -23,7 +23,8 @@ GameObject:
   - component: {fileID: 50164701400246942}
   - component: {fileID: 61307021836409214}
   - component: {fileID: 120588103207376744}
-  - component: {fileID: 114977471397165354}
+  - component: {fileID: 114559777727384522}
+  - component: {fileID: 114373897896073250}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -89,7 +90,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &114977471397165354
+--- !u!114 &114373897896073250
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -97,13 +98,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 1651830144351992}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b9414a22ffef43e98a83bbd5d387dd3, type: 3}
+  m_Script: {fileID: 11500000, guid: c06f0da02b1c9404e802d5a361acbd54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   shootableLayer:
     serializedVersion: 2
     m_Bits: 256
-  gunColor: {r: 0.9584611, g: 1, b: 0.13756822, a: 1}
+  gunColor: {r: 0, g: 0, b: 0, a: 0}
+  rotationSpeed: 0.2
+--- !u!114 &114559777727384522
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1651830144351992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d784c4753fc85b4e97144cbafb1354e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
 --- !u!120 &120588103207376744
 LineRenderer:
   m_ObjectHideFlags: 1
@@ -234,5 +248,5 @@ SpriteRenderer:
   m_Size: {x: 0.04, y: 0.04}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0

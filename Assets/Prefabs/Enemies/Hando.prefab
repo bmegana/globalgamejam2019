@@ -25,7 +25,8 @@ GameObject:
   - component: {fileID: 114498228689803678}
   - component: {fileID: 114644700720465458}
   - component: {fileID: 114505348581899334}
-  m_Layer: 0
+  - component: {fileID: 114722712424482866}
+  m_Layer: 8
   m_Name: Hando
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -155,6 +156,18 @@ MonoBehaviour:
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
   constrainInsideGraph: 0
+--- !u!114 &114722712424482866
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1773062068588332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25fc590e23028c841b9788e26588c5b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drops: []
 --- !u!212 &212048602380874710
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -25,7 +25,8 @@ GameObject:
   - component: {fileID: 114984216482382916}
   - component: {fileID: 114016168548954186}
   - component: {fileID: 114940948339379602}
-  m_Layer: 0
+  - component: {fileID: 114537633281656620}
+  m_Layer: 8
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -115,6 +116,18 @@ MonoBehaviour:
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
   constrainInsideGraph: 0
+--- !u!114 &114537633281656620
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1789678590345904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25fc590e23028c841b9788e26588c5b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drops: []
 --- !u!114 &114940948339379602
 MonoBehaviour:
   m_ObjectHideFlags: 1
