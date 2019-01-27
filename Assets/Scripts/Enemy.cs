@@ -6,6 +6,7 @@ using Random = UnityEngine.Random;
 
 public class Enemy : MonoBehaviour {
 
+
     [SerializeField] GameObject[] drops;
 
     public void Death() {
@@ -13,8 +14,12 @@ public class Enemy : MonoBehaviour {
         if (drops.Length > 0)
         {
             GameObject drop = drops[Random.Range(0, drops.Length)];
-            Instantiate(drop, transform.position, transform.rotation);
-        }        
-        Destroy(gameObject);
+			GameObject loot = Instantiate(drop, transform.position, transform.rotation);
+			Loot lootScript = loot.GetComponent<Loot> (); 
+			lootScript.StartCoroutine (lootScript.DestroyLoot());
+        }  
+		Destroy(gameObject);
     }
+
+
 }
