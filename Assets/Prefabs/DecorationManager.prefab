@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4256987344577054}
   - component: {fileID: 114199062781307304}
   m_Layer: 0
-  m_Name: ItemManager
+  m_Name: DecorationManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,8 +67,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  decListSize: 15
   decorationsPanel: {fileID: 0}
   decorations: {fileID: 0}
   decorationOptionsPanel: {fileID: 0}
+  inGameDecorImages: {fileID: 0}
   dummyLootPanel: {fileID: 0}

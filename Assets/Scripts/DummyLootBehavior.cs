@@ -3,20 +3,28 @@ using UnityEngine.UI;
 
 public class DummyLootBehavior : MonoBehaviour
 {
-    public GameObject item;
+    public GameObject itemPrefab;
+    private GameObject itemInstance;
 
     private Image itemImageComponent;
 
     public void UpdateDecoration()
     {
-        ItemManager.instance.UpdateDecoration(item);
+        DecorationManager.instance.UpdateDecoration(itemInstance);
+        itemImageComponent.color = Color.clear;
+        itemInstance = null;
     }
 
     private void Awake()
     {
+        if (itemPrefab != null)
+        {
+            itemInstance = Instantiate(itemPrefab);
+            itemInstance.SetActive(false);
+        }
         itemImageComponent =
             gameObject.transform.GetChild(0).GetComponent<Image>();
-        if (item == null)
+        if (itemInstance == null)
         {
             itemImageComponent.color = Color.clear;
         }
@@ -24,7 +32,7 @@ public class DummyLootBehavior : MonoBehaviour
         {
             itemImageComponent.color = Color.white;
             itemImageComponent.sprite =
-                item.GetComponent<SpriteRenderer>().sprite;
+                itemInstance.GetComponent<SpriteRenderer>().sprite;
         }
     }
 }

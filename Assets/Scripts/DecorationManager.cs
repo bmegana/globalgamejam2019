@@ -1,16 +1,17 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class ItemManager : MonoBehaviour
+public class DecorationManager : MonoBehaviour
 {
-    public static ItemManager instance;
+    public static DecorationManager instance;
     public GameObject[] decorationsList; //TODO: integrate with looting script
-    public int decListSize = 15;
 
     public GameObject decorationsPanel;
     public GameObject decorations;
 
     public GameObject decorationOptionsPanel;
+
+    public GameObject inGameDecorImages;
 
     private int decorationIndexToEdit;
 
@@ -27,11 +28,6 @@ public class ItemManager : MonoBehaviour
         {
             Destroy(this);
         }
-    }
-
-    public void Start()
-    {
-        decorationsList = new GameObject[decListSize];
     }
 
     public void DeactivateAllPanels()
@@ -78,16 +74,42 @@ public class ItemManager : MonoBehaviour
 
     public void UpdateDecoration(GameObject loot)
     {
-        DontDestroyOnLoad(loot);
-        decorationsList[decorationIndexToEdit] = loot;
-        DeactivateDecorationOptionsPanel();
-        DeactivateDummyLootPanel();
+        if (loot != null)
+        {
+            if (decorationsList[decorationIndexToEdit] != null)
+            {
+                Destroy(decorationsList[decorationIndexToEdit]);
+            }
+            DontDestroyOnLoad(loot);
+            decorationsList[decorationIndexToEdit] = loot;
+            DeactivateDecorationOptionsPanel();
+            DeactivateDummyLootPanel();
 
-        GameObject decorSlot =
-            decorations.transform.GetChild(decorationIndexToEdit).gameObject;
-        DecorationSlotBehavior dsb =
-            decorSlot.GetComponent<DecorationSlotBehavior>();
-        dsb.UpdateSlot(loot.GetComponent<SpriteRenderer>().sprite);
+            GameObject decorSlot =
+                decorations.transform.GetChild(decorationIndexToEdit).gameObject;
+            DecorationSlotBehavior dsb =
+                decorSlot.GetComponent<DecorationSlotBehavior>();
+            dsb.UpdateSlot(loot.GetComponent<SpriteRenderer>().sprite);
+        }
+    }
+
+    public void UpdateInGameDecorDisplay()
+    {
+        int childCount = inGameDecorImages.transform.childCount;
+        for (int i = 0; i < childCount; i++)
+        {
+            GameObject decPanelChild =
+                decorations.transform.GetChild(i).gameObject;
+            DecorationSlotBehavior decSlotBehavior =
+                decPanelChild.GetComponent<DecorationSlotBehavior>();
+            Sprite decSlotSprite = decSlotBehavior.getSprite();
+
+            GameObject inGameDecChild =
+                inGameDecorImages.transform.GetChild(i).gameObject;
+            InGameDecorDisplay displayScript =
+                inGameDecChild.GetComponent<InGameDecorDisplay>();
+            displayScript.UpdateDisplay(decSlotSprite);
+        }
     }
 
     public void Update()
