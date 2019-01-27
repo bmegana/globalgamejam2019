@@ -3,6 +3,8 @@ using Pathfinding;
 
 public class EnemySpawn : MonoBehaviour
 {
+    public static EnemySpawn instance;
+
     public Transform target;
 
     public float xSpawnFromOrigin;
@@ -22,12 +24,17 @@ public class EnemySpawn : MonoBehaviour
     public GameObject enemyFred;
 
     public RoundData[] rounds;
-    private double roundTime = 0.0;
-    private bool roundIsActive = true;
+    public double roundTime = 0.0;
+    public bool roundIsActive = true;
+    private RoundData data;
+    private bool newRoundSet = false;
 
-    private int currentRoundIndex = 0;
+    public int numEnemiesDead;
+    public int totalEnemiesInCurrRound;
+    private bool numEnemiesInRoundSet = false;
+
+    public int currentRoundIndex = 0;
     private int currentNumEnemiesOnScreen;
-    private int totalNumEnemies;
 
     private Vector2 NorthDir()
     {
@@ -145,13 +152,43 @@ public class EnemySpawn : MonoBehaviour
             currentNumEnemiesOnScreen < maxNumEnemiesOnScreen);
     }
 
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }
+    }
+
+    public void ActivateNextRound()
+    {
+        roundIsActive = true;
+        Time.timeScale = 1;
+    }
+
     private void Update()
     {
         if (0 < rounds.Length && currentRoundIndex < rounds.Length &&
             roundIsActive)
         {
-            RoundData data = rounds[currentRoundIndex];
-            totalNumEnemies += rounds[currentRoundIndex].enemyGroupCounts.Length;
+            if (!newRoundSet)
+            {
+                data = rounds[currentRoundIndex];
+                newRoundSet = true;
+            }
+            if (!numEnemiesInRoundSet)
+            {
+                int[] groupCounts = rounds[currentRoundIndex].enemyGroupCounts;
+                for (int i = 0; i < groupCounts.Length; i++)
+                {
+                    totalEnemiesInCurrRound += groupCounts[i];
+                }
+                numEnemiesInRoundSet = true;
+            }
 
             if (data.intervalIndex < data.numIntervals)
             {
@@ -163,12 +200,16 @@ public class EnemySpawn : MonoBehaviour
                     data.intervalIndex++;
                 }
             }
-            else if (totalNumEnemies == 0)
+            else if (numEnemiesDead == totalEnemiesInCurrRound)
             {
                 rounds[currentRoundIndex].intervalIndex = 0;
                 currentRoundIndex++;
                 roundIsActive = false;
+                newRoundSet = false;
                 roundTime = 0;
+                numEnemiesInRoundSet = false;
+                Time.timeScale = 0;
+                DecorationManager.instance.ActivateDecoratePanel();
             }
         }
     }
