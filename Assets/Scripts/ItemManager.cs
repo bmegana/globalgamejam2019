@@ -94,7 +94,8 @@ public class ItemManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            ActivateDecoratePanel();
+            if (decorationsPanel.activeSelf) DeactivateDecoratePanel();
+            else ActivateDecoratePanel();
         }
     }
 }

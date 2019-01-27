@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //By JC
+// working on inventory
 
 public class PlayerControler : MonoBehaviour {
 	public float speed;
+
 	private Rigidbody2D rb; // attached
 	private Vector2 moveVelocity;
 
