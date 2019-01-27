@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Threading;
 
 public class PlayerShooting : MonoBehaviour {
 
@@ -8,8 +9,11 @@ public class PlayerShooting : MonoBehaviour {
     [SerializeField] LayerMask shootableLayer;
     [SerializeField] Color gunColor;
     [SerializeField] float rotationSpeed = 0.2f;
+    [SerializeField] Gun[] guns;
 
     LineRenderer gunLine;
+    int gunIndex;
+    float lastFiredTime = float.MinValue;
 
 	// Use this for initialization
 	void Start () {
@@ -18,16 +22,18 @@ public class PlayerShooting : MonoBehaviour {
     
     // Update is called once per frame
     void Update () {
-        //Ray2D ray = new Ray2D(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition + transform.position));
+        Gun gun = guns[gunIndex];
+
         Ray2D ray = new Ray2D(transform.position, transform.right);
         Debug.DrawRay(ray.origin, ray.direction * 100, Color.red);
 
-        gunLine.startColor = gunColor;
-        gunLine.endColor = gunColor;
+        gunLine.startColor = gun.color;
+        gunLine.endColor = gun.color;
 
         Rotate();
 
-        if (Input.GetButton("Fire1")) {
+        // Shooting
+        if (Input.GetButton("Fire1") && Time.time - lastFiredTime >= gun.fireRate) {
             gunLine.SetPosition(0, transform.position);
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction, 100, shootableLayer);
             if (hit.collider != null && hit.transform.CompareTag("Enemy")) {
@@ -38,11 +44,26 @@ public class PlayerShooting : MonoBehaviour {
                 hit.transform.GetComponent<Enemy>().Death();
             }
             else {
-                //gunLine.SetPosition(1, ray.origin + hit.point);
-                // have gunLine hit environment
-                gunLine.enabled = false;
+                // mock gunLine hit environment in distance
+                gunLine.SetPosition(1, ray.GetPoint(100));
             }
+
+            Invoke("HideGunLine", .1f);
+            lastFiredTime = Time.time;
         }
+
+        // Weapon Switching
+        // TODO: can add weapon switch timer?
+        float weaponSwitchAxis = Input.GetAxis("Mouse ScrollWheel");
+        if (weaponSwitchAxis > 0) {
+            if (gunIndex == 0) return;
+            gunIndex--;
+        }
+        else if (weaponSwitchAxis < 0) {
+            if (gunIndex == guns.Length - 1) return;
+            gunIndex++;
+        }
+        print(string.Format("Using weapon {0}", gun.gunName));
     }
 
     // TODO: add smoothing
@@ -50,5 +71,9 @@ public class PlayerShooting : MonoBehaviour {
         Vector3 worldMouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         worldMouse.z = transform.position.z;
         transform.right = Vector3.MoveTowards(transform.right, worldMouse - transform.position, rotationSpeed);
+    }
+
+    void HideGunLine() {
+        gunLine.enabled = false;
     }
 }
