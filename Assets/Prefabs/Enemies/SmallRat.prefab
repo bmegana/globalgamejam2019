@@ -111,7 +111,7 @@ MonoBehaviour:
   repathRate: 0.5
   canSearch: 1
   canMove: 1
-  maxSpeed: 4
+  maxSpeed: 2
   gravity: {x: NaN, y: NaN, z: NaN}
   groundMask:
     serializedVersion: 2
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drops:
-  - {fileID: 1651830144351992, guid: 2335e92867e389f4db78708fc4ebacae, type: 2}
+  - {fileID: 1651830144351992, guid: 1919e3d71b66f434eabcb6010df1bc5a, type: 2}
 --- !u!212 &212936855663710268
 SpriteRenderer:
   m_ObjectHideFlags: 1

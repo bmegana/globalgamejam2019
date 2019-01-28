@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 61307021836409214}
   - component: {fileID: 114782997514705490}
   m_Layer: 0
-  m_Name: Helmet
+  m_Name: Hemlet
   m_TagString: Loot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

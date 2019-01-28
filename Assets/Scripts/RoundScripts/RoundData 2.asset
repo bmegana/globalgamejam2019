@@ -13,10 +13,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   intervalIndex: 0
   numIntervals: 3
-  enemyGroupCounts: 030000000600000009000000
+  enemyGroupCounts: 020000000300000004000000
   spawnTimes:
+  - 3
   - 5
-  - 10
-  - 15
-  nextSpawnDirections: 000000000100000000000000
-  nextEnemiesToSpawn: 030000000000000002000000
+  - 6
+  nextSpawnDirections: 020000000300000004000000
+  nextEnemiesToSpawn: 000000000100000001000000

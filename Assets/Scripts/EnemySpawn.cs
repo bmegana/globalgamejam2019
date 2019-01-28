@@ -22,6 +22,9 @@ public class EnemySpawn : MonoBehaviour
     public GameObject enemyHando;
     public GameObject enemySlick;
     public GameObject enemyFred;
+    public GameObject enemyBoxer;
+    public GameObject enemyKrown;
+    public GameObject enemyRoach;
 
     public RoundData[] rounds;
     public double roundTime = 0.0;
@@ -107,6 +110,15 @@ public class EnemySpawn : MonoBehaviour
                 enemy = Instantiate(enemyFred, dir, new Quaternion());
                 Debug.Log("Spawning Fred.");
                 break;
+            case RoundData.Enemy.Boxer:
+                enemy = Instantiate(enemyBoxer, dir, new Quaternion());
+                break;
+            case RoundData.Enemy.Roach:
+                enemy = Instantiate(enemyRoach, dir, new Quaternion());
+                break;
+            case RoundData.Enemy.Krown:
+                enemy = Instantiate(enemyKrown, dir, new Quaternion());
+                break;
         }
         AIDestinationSetter destSetter =
             enemy.GetComponent<AIDestinationSetter>();
@@ -164,10 +176,22 @@ public class EnemySpawn : MonoBehaviour
         }
     }
 
-    public void ActivateNextRound()
+    public void ActivateNextRound(int roundNumber)
     {
         roundIsActive = true;
         Time.timeScale = 1;
+        if (roundNumber == 1)
+        {
+            SoundPlayer.instance.PlayTrackOne();
+        }
+        else if (roundNumber == 2)
+        {
+            SoundPlayer.instance.PlayTrackTwo();
+        }
+        if (roundNumber == 3)
+        {
+            SoundPlayer.instance.PlayTrackThree();
+        }
     }
 
     private void Update()

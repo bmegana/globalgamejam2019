@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Name: RoundData 5
   m_EditorClassIdentifier: 
   intervalIndex: 0
-  numIntervals: 0
-  enemyGroupCounts: 
-  spawnTimes: []
-  nextSpawnDirections: 
-  nextEnemiesToSpawn: 
+  numIntervals: 1
+  enemyGroupCounts: 0a000000
+  spawnTimes:
+  - 1
+  nextSpawnDirections: 04000000
+  nextEnemiesToSpawn: 06000000

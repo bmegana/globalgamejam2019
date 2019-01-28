@@ -60,9 +60,6 @@ MonoBehaviour:
   minNumEnemiesOnScreen: 0
   spawnWhenBelowMaximum: 0
   maxNumEnemiesOnScreen: 0
-  enemyGroupCounts: 
-  spawnTimes: []
-  nextDirectionsToSpawn: 
   enemySmallRat: {fileID: 1185359493185644, guid: f4840c4f466048d41bfb96dddc9beda3,
     type: 2}
   enemyBigRat: {fileID: 1039502286137998, guid: d5e496997fb1e0143ad0236a286e9bc0,
@@ -70,6 +67,17 @@ MonoBehaviour:
   enemyHando: {fileID: 1773062068588332, guid: 3334f41a8cf2cf04eb92e1b0c2f293b2, type: 2}
   enemySlick: {fileID: 1584271428209428, guid: 927a64096a9005b499773eb0416dd8d2, type: 2}
   enemyFred: {fileID: 1835792946526338, guid: 2bb009633b215e94b905e634c5471ae9, type: 2}
-  nextEnemiesToSpawn: 
-  currentNumEnemiesOnScreen: 0
-  totalNumEnemies: 0
+  enemyBoxer: {fileID: 1835792946526338, guid: 5b47e9d73e92ef04da0aec075be176f7, type: 2}
+  enemyKrown: {fileID: 1789678590345904, guid: b759bdeb49068ee41a6741522c2ee471, type: 2}
+  enemyRoach: {fileID: 1789678590345904, guid: 6883cf632a4357b4d841eead43383547, type: 2}
+  rounds:
+  - {fileID: 11400000, guid: 2b149c7fe54284248a1fbc35731e7d44, type: 2}
+  - {fileID: 11400000, guid: ec9da1ac8bfb3df499d5f4b547e2d888, type: 2}
+  - {fileID: 11400000, guid: 7dfd7a2a940497a4ebce0553383bf66a, type: 2}
+  - {fileID: 11400000, guid: db8a3c72134ba394f85a8aef0f9701dc, type: 2}
+  - {fileID: 11400000, guid: 094a6b6f0be170d409403f2934843b41, type: 2}
+  roundTime: 0
+  roundIsActive: 1
+  numEnemiesDead: 0
+  totalEnemiesInCurrRound: 0
+  currentRoundIndex: 0

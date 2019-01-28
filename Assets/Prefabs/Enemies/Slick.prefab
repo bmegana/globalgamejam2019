@@ -102,7 +102,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25fc590e23028c841b9788e26588c5b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drops: []
+  drops:
+  - {fileID: 1651830144351992, guid: 8ded9a94b1ef750498107ea2b0db5a7c, type: 2}
 --- !u!114 &114117301356489820
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -160,7 +161,7 @@ MonoBehaviour:
   repathRate: 0.5
   canSearch: 1
   canMove: 1
-  maxSpeed: 5
+  maxSpeed: 3
   gravity: {x: NaN, y: NaN, z: NaN}
   groundMask:
     serializedVersion: 2
