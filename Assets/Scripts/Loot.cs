@@ -5,6 +5,7 @@ using UnityEngine;
 public class Loot : MonoBehaviour {
 	
 	public float timeTilDestroyed = 5f;
+	public string description;
 	//public int ListSize;
 	//private lootlist[ListSize];
 	//touching loot? // loot collision
