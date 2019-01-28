@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using Pathfinding;
 
 public class EnemySpawn : MonoBehaviour
@@ -31,6 +32,8 @@ public class EnemySpawn : MonoBehaviour
     public bool roundIsActive = true;
     private RoundData data;
     private bool newRoundSet = false;
+
+    private bool musicIsPlaying = false;
 
     public int numEnemiesDead;
     public int totalEnemiesInCurrRound;
@@ -176,22 +179,15 @@ public class EnemySpawn : MonoBehaviour
         }
     }
 
-    public void ActivateNextRound(int roundNumber)
+    private void Start()
+    {
+        SoundPlayer.instance.PlayTrackOne();
+    }
+
+    public void ActivateNextRound()
     {
         roundIsActive = true;
         Time.timeScale = 1;
-        if (roundNumber == 1)
-        {
-            SoundPlayer.instance.PlayTrackOne();
-        }
-        else if (roundNumber == 2)
-        {
-            SoundPlayer.instance.PlayTrackTwo();
-        }
-        if (roundNumber == 3)
-        {
-            SoundPlayer.instance.PlayTrackThree();
-        }
     }
 
     private void Update()
@@ -232,9 +228,14 @@ public class EnemySpawn : MonoBehaviour
                 newRoundSet = false;
                 roundTime = 0;
                 numEnemiesInRoundSet = false;
+                musicIsPlaying = false;
                 Time.timeScale = 0;
                 DecorationManager.instance.ActivateDecoratePanel();
             }
+        }
+        else if (currentRoundIndex >= rounds.Length)
+        {
+            SceneManager.LoadScene("Compass");
         }
     }
 }
