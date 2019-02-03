@@ -11,10 +11,11 @@ public class CompassScene : MonoBehaviour
 
     private void Update()
     {
-        time += Time.deltaTime;
-        if (time >= 25)
-        {
-            SceneManager.LoadScene("EndingScene");
-        }
+		
+     time += Time.deltaTime;
+     if (time >= 25)
+      {
+         SceneManager.LoadScene("EndingScene");
+      }
     }
 }
