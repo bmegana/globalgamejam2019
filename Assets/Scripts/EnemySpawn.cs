@@ -235,7 +235,8 @@ public class EnemySpawn : MonoBehaviour
         }
         else if (currentRoundIndex >= rounds.Length)
         {
-			SceneManager.LoadScene("EndingScene");
+			Time.timeScale = 1;
+			SceneManager.LoadScene("Compass");
         }
     }
 }

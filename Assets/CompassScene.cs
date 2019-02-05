@@ -3,6 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class CompassScene : MonoBehaviour
 {
+	
     double time = 0;
     private void Start()
     {
@@ -13,7 +14,7 @@ public class CompassScene : MonoBehaviour
     {
 		
      time += Time.deltaTime;
-     if (time >= 25)
+     if (time >= 22)
       {
          SceneManager.LoadScene("EndingScene");
       }
